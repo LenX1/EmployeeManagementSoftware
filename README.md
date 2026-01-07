@@ -1,2 +1,2 @@
 # EmployeeManagementSoftware
-Project with HTML, CSS and PHP
+Project with HTML, CSS, PHP and MySQL
