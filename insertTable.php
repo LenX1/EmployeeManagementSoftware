@@ -1,14 +1,14 @@
 <?php
 
-    function insertTable($host, $dbname, $tablename, $username, $password, $id, $vorname, $name, $abteilung, $gehalt, $eintrittsdatum, $status) {
+    function insertTable($host, $dbName, $tableName, $userName, $password, $id, $firstName, $lastName, $department, $salery, $hireDate, $status) {
         try {
-            $connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $connection = new PDO("mysql:host=$host;dbname=$dbName", $userName, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	    if(!is_numeric($gehalt)) {$gehalt=0;}
 	    if($eintrittsdatum == '') {$eintrittsdatum = date("Y-m-d");}
 
-	    $statement = $connection->prepare("INSERT INTO $tablename (ID, Vorname, Name, Abteilung, Gehalt, Eintrittsdatum, Status) VALUES ($id, \"$vorname\", \"$name\", \"$abteilung\", $gehalt, \"$eintrittsdatum\", \"$status\")");
+	    $statement = $connection->prepare("INSERT INTO $tableName (ID, Vorname, Name, Abteilung, Gehalt, Eintrittsdatum, Status) VALUES ($id, \"$firstName\", \"$lastName\", \"$department\", $salery, \"$hireDate\", \"$status\")");
             $statement->execute();
 
             //echo "New records created successfully";
@@ -19,6 +19,4 @@
     }
 
 ?>
-
-
 
