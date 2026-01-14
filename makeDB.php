@@ -1,12 +1,12 @@
 <?php
 
-    function makeDB($host, $dbname, $username, $password) {
+    function makeDB($host, $dbName, $userName, $password) {
         try {
-            $connection = new PDO("mysql:host=$host", $username, $password);
+            $connection = new PDO("mysql:host=$host", $userName, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sqlquery = "CREATE DATABASE IF NOT EXISTS $dbname";
+            $sqlquery = "CREATE DATABASE IF NOT EXISTS $dbName";
             $connection->exec($sqlquery);
-            //echo "Database created successfully<br>";
+            
         } catch(PDOException $error) {
             echo "Make DB: " . $sqlquery . "<br>" . $error->getMessage();
         }
