@@ -3,26 +3,21 @@
 
 <html lang="de">
 
-<?php
-    require 'config.php';
-    require('outTableEditor.php');
-    require('writeTable.php');
-
-
-    $idrow =  $_POST['wertid'];
-
-    if(isset($_POST['wert'])) {
-	writeTable($host, $dbname, $tablename, $username, $password, $_POST[0], $_POST[1], $_POST[2], $_POST[3], $_POST[4], $_POST[5], $_POST[6]);
-	header("Location: ./index.php");
-    }
-    if(isset($_POST['abbruch'])) {
-        header("Location: ./index.php");
-    }
-
-
-?>
-
-
+	<?php
+	    require 'config.php';
+	    require('outTableEditor.php');
+	    require('writeTable.php');
+	
+	    $idrow =  $_POST['wertid'];
+	
+	    if(isset($_POST['wert'])) {
+		writeTable($host, $dbName, $tableName, $userName, $password, $_POST[0], $_POST[1], $_POST[2], $_POST[3], $_POST[4], $_POST[5], $_POST[6]);
+		header("Location: ./index.php");
+	    }
+	    if(isset($_POST['abbruch'])) {
+	        header("Location: ./index.php");
+	    }
+	?>
 
     <head>
         <meta charset="utf-8">
@@ -45,11 +40,11 @@
                 </tr>
             </thead>
             <tbody>
-		<?php outTableEditor($host, $dbname, $tablename, $username, $password, $idrow); ?>
+				<?php outTableEditor($host, $dbName, $tableName, $userName, $password, $idrow); ?>
             </tbody>
         </table>
-	<br>
-	<button type="submit" name="abbruch" formnovalidate> Abbruch </button>
+		<br>
+		<button type="submit" name="abbruch" formnovalidate> Abbruch </button>
     </body>
 </html>
 
