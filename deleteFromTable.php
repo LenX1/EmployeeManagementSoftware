@@ -1,14 +1,13 @@
 <?php
 
-    function deleteFromTable($host, $dbname, $tablename, $username, $password, $id) {
+    function deleteFromTable($host, $dbName, $tableName, $userName, $password, $id) {
         try {
-            $connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $connection = new PDO("mysql:host=$host;dbname=$dbName", $userName, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $statement = $connection->prepare("DELETE FROM $tablename WHERE ID=$id");
+            $statement = $connection->prepare("DELETE FROM $tableName WHERE ID=$id");
             $statement->execute();
 
-            //echo "Delete record successfully";
         } catch(PDOException $error) {
             echo "DeleteFromTable - Error: " . $error->getMessage();
         }
