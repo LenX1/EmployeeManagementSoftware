@@ -1,29 +1,28 @@
 <?php
 
-    function CSVtoDB($host, $dbname, $tablename, $username, $password, $csvname) {
+    function CSVtoDB($host, $dbName, $tableName, $userName, $password, $csvName) {
         try {
-            $connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $connection = new PDO("mysql:host=$host;dbname=$dbName", $userName, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $file = fopen($csvname, "r");
+            $file = fopen($csvName, "r");
             while(! feof($file)) {
-                $daten = fgetcsv($file);
-                $id = $daten[0];
-                $vorname = $daten[1];
-                $name = $daten[2];
-                $abteilung = $daten[3];
-                $gehalt = $daten[4];
-                $eintrittsdatum = $daten[5];
-                $status = $daten[6];
+                $data = fgetcsv($file);
+                $id = $data[0];
+                $firstName = $data[1];
+                $lastName = $data[2];
+                $department = $data[3];
+                $salery = $data[4];
+                $hireDate = $data[5];
+                $status = $data[6];
 
-                $statement = $connection->prepare("INSERT IGNORE INTO $tablename (ID, Vorname, Name, Abteilung, Gehalt, Eintrittsdatum, Status)
-                VALUES ('$id', '$vorname', '$name', '$abteilung', '$gehalt', '$eintrittsdatum', '$status')");
+                $statement = $connection->prepare("INSERT IGNORE INTO $tableName (ID, Vorname, Name, Abteilung, Gehalt, Eintrittsdatum, Status)
+                VALUES ('$id', '$firstName', '$lastName', '$department', '$salery', '$hireDate', '$status')");
                 $statement->execute();
             }
-            $sqlquery = "DELETE FROM $tablename WHERE ID = '' OR 0";
+            $sqlquery = "DELETE FROM $tableName WHERE ID = '' OR 0";
             $connection->exec($sqlquery);
 
-            //echo "New records created successfully";
         } catch(PDOException $error) {
             echo "CSVtoDB - Error: " . $error->getMessage();
         }
